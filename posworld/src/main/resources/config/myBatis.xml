@@ -3,8 +3,10 @@
 <configuration>
     <typeAliases>
         <package name="com.posco.posworld.user.model"/>
+        <package name="com.posco.posworld.photo.model"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/userMapper.xml"></mapper>
+        <mapper resource="mapper/photoMapper.xml"></mapper>
     </mappers>
 </configuration>

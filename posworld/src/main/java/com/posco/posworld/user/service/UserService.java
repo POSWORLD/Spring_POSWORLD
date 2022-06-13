@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
     List<UserDto> findUser();
-    UserDto findUserById(UserDto userDto);
+    UserDto serviceLogin(UserDto userDto);
+    UserDto getUserByUserId(UserDto userDto);
     Integer insertUser(UserDto userDto);
-    UserDto loginUser(UserDto userDto);
 }
