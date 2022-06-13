@@ -1,6 +1,9 @@
 server :
-  port : 8080
+  port : 8001
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   devtools:
     livereload:
       enabled: true
