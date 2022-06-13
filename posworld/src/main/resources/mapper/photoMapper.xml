@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.posco.posworld.user.repository.PhotoMapper">
+<mapper namespace="com.posco.posworld.photo.repository.PhotoMapper">
     <select id="getPhotoByUserId" resultType="PhotoDto">
         SELECT id, userId, title, content, img, wdate
         FROM phototbl
