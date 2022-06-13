@@ -3,10 +3,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.posco.posworld.pComment.repository.PcommentMapper">
-    <select id="getCommentbyPhotoAndUserId" resultType="PcommentDto">
-        SELECT id, userId, title, content, img, wdate
+    <select id="getCommentbyPhoto" resultType="PcommentDto">
+        SELECT id,pid, userId, content, wdate
         FROM pcommenttbl
-        where id= #{id} and userId = #{userId};
+        where pid= #{pid};
     </select>
 
     <insert id="insertPComment" parameterType="PcommentDto">

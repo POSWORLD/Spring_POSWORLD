@@ -5,6 +5,8 @@ import com.posco.posworld.pComment.repository.PcommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PcommentServiceImpl implements PcommentService{
     @Autowired
@@ -13,4 +15,11 @@ public class PcommentServiceImpl implements PcommentService{
     public Integer insertPcomment(PcommentDto pcommentDto) {
         return pcommentMapper.insertPComment(pcommentDto);
     }
+
+    @Override
+    public List<PcommentDto> getCommentbyPhoto(PcommentDto pcommentDto) {
+        return pcommentMapper.getCommentbyPhoto(pcommentDto);
+    }
+
+
 }
