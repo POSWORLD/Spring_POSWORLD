@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,4 +67,20 @@ public class UserController {
         HttpStatus httpStatus = userService.insertUser(userDto)==1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(httpStatus);
     }
+
+    @GetMapping("/me")
+    @TokenRequired
+    public UserDto getUserByMe(){
+        UserDto userDto = new UserDto();
+        userDto.setId(securityService.getIdAtToken());
+        return userService.getUserById(userDto);
+    }
+
+    @PutMapping("/update")
+    @TokenRequired
+    public Integer updateUserById(@RequestBody UserDto userDto) {
+        userDto.setId(Integer.valueOf(securityService.getIdAtToken()));
+        return userService.updateUserById(userDto);
+    }
+
 }

@@ -22,16 +22,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
-    @Bean
-    public Docket api2() {
-        return new Docket(DocumentationType.OAS_30)
-                .groupName("post")
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.post.controller"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo());
-    }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("posworld")

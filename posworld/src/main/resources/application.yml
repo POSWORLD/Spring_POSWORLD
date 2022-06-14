@@ -12,6 +12,8 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+file: C:\Users\user\posworld\Spring_POSWORLD\Spring_POSWORLD\posworld\src\main\resources\static\img
+
 mybatis:
   config-location: classpath:config/myBatis.xml
 
