@@ -5,10 +5,7 @@ import com.posco.posworld.config.SecurityService;
 import com.posco.posworld.home.model.HomeDto;
 import com.posco.posworld.home.service.HomeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("home")
@@ -23,6 +20,12 @@ public class HomeController {
     @PostMapping("/")
     public Integer InserPost(@RequestBody HomeDto homeDto){
         homeDto.setUserId(securityService.getIdAtToken());
-        return homeService.InsertPost(homeDto);
+        return homeService.InsertHome(homeDto);
+    }
+    @PutMapping("/{id}")
+    public Integer updatePost(@RequestBody HomeDto homeDto, @PathVariable String id){
+        homeDto.setUserId(securityService.getIdAtToken());
+        homeDto.setId(Integer.valueOf(id));
+        return homeService.UpdateHome(homeDto);
     }
 }

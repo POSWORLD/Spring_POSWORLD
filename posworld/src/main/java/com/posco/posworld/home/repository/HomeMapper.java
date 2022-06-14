@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HomeMapper {
     Integer insertHome(HomeDto homeDto);
+    Integer updateHome(HomeDto homeDto);
+
 }

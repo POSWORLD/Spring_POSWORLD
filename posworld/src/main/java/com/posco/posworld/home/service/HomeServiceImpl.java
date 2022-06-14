@@ -10,7 +10,12 @@ public class HomeServiceImpl implements HomeService{
     @Autowired
     HomeMapper homeMapper;
     @Override
-    public Integer InsertPost(HomeDto homeDto) {
+    public Integer InsertHome(HomeDto homeDto) {
         return homeMapper.insertHome(homeDto);
+    }
+
+    @Override
+    public Integer UpdateHome(HomeDto homeDto) {
+        return homeMapper.updateHome(homeDto);
     }
 }

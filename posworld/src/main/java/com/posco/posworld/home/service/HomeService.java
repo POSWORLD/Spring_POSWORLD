@@ -3,5 +3,6 @@ package com.posco.posworld.home.service;
 import com.posco.posworld.home.model.HomeDto;
 
 public interface HomeService {
-    Integer InsertPost(HomeDto homeDto);
+    Integer InsertHome(HomeDto homeDto);
+    Integer UpdateHome(HomeDto homeDto);
 }

@@ -9,4 +9,15 @@
         VALUES
             (#{userId}, #{title}, #{photo}, #{content}, #{bgm})
     </insert>
+    <update id="updateHome" parameterType="HomeDto">
+        UPDATE hometbl
+        <set>
+            <if test="title!=null">title = #{title},</if>
+            <if test="photo!=null">photo = #{photo},</if>
+            <if test="content!=null">content = #{content},</if>
+            <if test="bgm!=null">bgm = #{bgm}</if>
+        </set>
+        WHERE
+            id = #{id} and userId=#{userId}
+    </update>
 </mapper>
