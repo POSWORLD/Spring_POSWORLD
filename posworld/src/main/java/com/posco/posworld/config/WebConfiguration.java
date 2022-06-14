@@ -12,6 +12,5 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:3001")
                 .allowedMethods("*")
                 .allowedHeaders("*");
-
     }
 }

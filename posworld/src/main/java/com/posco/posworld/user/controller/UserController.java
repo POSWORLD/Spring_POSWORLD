@@ -64,4 +64,19 @@ public class UserController {
         HttpStatus httpStatus = userService.insertUser(userDto)==1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(httpStatus);
     }
+
+    @GetMapping("/me")
+    @TokenRequired
+    public UserDto getUserByMe(){
+        UserDto userDto = new UserDto();
+        userDto.setId(securityService.getIdAtToken());
+        return userService.getUserById(userDto);
+    }
+
+    @PutMapping("/update")
+    @TokenRequired
+    public Integer updateUserById(@RequestBody UserDto userDto) {
+        userDto.setId(Integer.valueOf(securityService.getIdAtToken()));
+        return userService.updateUserById(userDto);
+    }
 }

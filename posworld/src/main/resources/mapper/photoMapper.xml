@@ -4,6 +4,7 @@
     <insert id="insertPhoto" parameterType="PhotoDto">
         INSERT INTO phototbl(userId, title, content, img)
         VALUES (#{userId}, #{title}, #{content}, #{img})
+
     </insert>
 
     <update id="updatePhoto" parameterType="PhotoDto">
