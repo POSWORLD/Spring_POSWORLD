@@ -11,8 +11,12 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 10MB
 
-file: C:\Users\user\posworld\Spring_POSWORLD\Spring_POSWORLD\posworld\src\main\resources\static\img
+file: C:\Users\user\posworld\Spring_POSWORLD\Spring_POSWORLD\posworld\src\main\resources\static
 
 mybatis:
   config-location: classpath:config/myBatis.xml
