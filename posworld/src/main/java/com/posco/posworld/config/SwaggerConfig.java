@@ -25,9 +25,9 @@ public class SwaggerConfig {
     @Bean
     public Docket api2() {
         return new Docket(DocumentationType.OAS_30)
-                .groupName("post")
+                .groupName("board")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.post.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.board.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
