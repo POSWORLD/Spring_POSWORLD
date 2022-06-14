@@ -34,9 +34,16 @@ public class PcommenController {
 
 
     @PostMapping("/")
-    public ResponseEntity<?> postUser(@RequestBody PcommentDto pcommentDto) {
+    public ResponseEntity<?> postPcomment(@RequestBody PcommentDto pcommentDto) {
         HttpStatus httpStatus = pcommentService.insertPcomment(pcommentDto)==1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(httpStatus);
+    }
+
+    @DeleteMapping("/{id}")
+    public Integer deletePcomment(@PathVariable String id){
+        pcommentDto.setId(Integer.valueOf(id));
+        pcommentDto.setUserId(securityService.getIdAtToken());
+        return pcommentService.deletePComment(pcommentDto);
     }
 
 

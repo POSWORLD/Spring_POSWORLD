@@ -14,5 +14,9 @@
         values (#{pid}, #{userId}, #{content});
     </insert>
 
+    <delete id="deletePComment" parameterType="PcommentDto">
+        DELETE from pcommenttbl where id = #{id} and userId = #{userId};
+    </delete>
+
 
 </mapper>

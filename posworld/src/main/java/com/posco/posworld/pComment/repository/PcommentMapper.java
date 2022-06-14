@@ -11,4 +11,6 @@ public interface PcommentMapper {
     Integer insertPComment(PcommentDto pcommentDto);
 
     List<PcommentDto> getCommentbyPhoto(PcommentDto pcommentDto);
+
+    Integer deletePComment(PcommentDto pcommentDto);
 }

@@ -9,4 +9,6 @@ public interface PcommentService {
     Integer insertPcomment(PcommentDto pcommentDto);
 
     List<PcommentDto> getCommentbyPhoto(PcommentDto pcommentDto);
+
+    Integer deletePComment(PcommentDto pcommentDto);
 }

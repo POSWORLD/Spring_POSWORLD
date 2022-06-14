@@ -21,5 +21,10 @@ public class PcommentServiceImpl implements PcommentService{
         return pcommentMapper.getCommentbyPhoto(pcommentDto);
     }
 
+    @Override
+    public Integer deletePComment(PcommentDto pcommentDto) {
+        return pcommentMapper.deletePComment(pcommentDto);
+    }
+
 
 }
