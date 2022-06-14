@@ -13,6 +13,12 @@
             <if test="img!=null">img = #{img},</if>
             <if test="content!=null">content = #{content}</if>
         </set>
-        WHERE id = #{id}
+        WHERE userId = #{userId} AND id = #{id}
     </update>
+
+    <delete id="deletePhoto" parameterType="PhotoDto">
+        DELETE FROM phototbl
+        WHERE id = #{id} AND userId = #{userId}
+    </delete>
+
 </mapper>

@@ -30,4 +30,11 @@ public class PhotoController {
         photoDto.setId(Integer.valueOf(id));
         return photoService.updatePhoto(photoDto);
     }
+
+    @DeleteMapping("/{id}")
+    public Integer deletePhoto(@PathVariable String id) {
+        photoDto.setUserId(securityService.getIdAtToken());
+        photoDto.setId(Integer.valueOf(id));
+        return photoService.deletePhoto(photoDto);
+    }
 }

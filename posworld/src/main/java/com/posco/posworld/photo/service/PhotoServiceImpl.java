@@ -19,4 +19,9 @@ public class PhotoServiceImpl implements PhotoService {
     public Integer updatePhoto(PhotoDto photoDto) {
         return photoMapper.updatePhoto(photoDto);
     }
+
+    @Override
+    public Integer deletePhoto(PhotoDto photoDto) {
+        return photoMapper.deletePhoto(photoDto);
+    }
 }
