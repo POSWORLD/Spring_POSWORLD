@@ -5,8 +5,8 @@
 <mapper namespace="com.posco.posworld.home.repository.HomeMapper">
     <insert id="insertHome" parameterType="HomeDto">
         INSERT INTO
-        hometbl( title, photo, content, bgm)
+            hometbl( userId,title, photo, content, bgm)
         VALUES
-        (#{title}, #{photo}, #{content}, #{bgm})
+            (#{userId}, #{title}, #{photo}, #{content}, #{bgm})
     </insert>
 </mapper>
