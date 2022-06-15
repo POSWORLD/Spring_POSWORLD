@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posco.posworld.photo.repository.PhotoMapper">
+    <select id="getPhotoByUserId" resultType="PhotoDto">
+        SELECT id, userId, title, content, img, wdate
+        FROM phototbl
+    </select>
+
+    <insert id="insertPhoto" parameterType="PhotoDto">
+        insert into posts(userId, title, content, img, wdate)
+        values (#{userId}, #{title}, #{content}, #{img}, #{wdate});
+    </insert>
+</mapper>

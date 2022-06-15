@@ -35,4 +35,15 @@ public class UserServiceImpl implements UserService{
     public Integer insertUser(UserDto userDto) {
         return userMapper.postUser(userDto);
     }
+
+
+    @Override
+    public UserDto getUserById(UserDto userDto) {
+        return userMapper.getUserById(userDto);
+    }
+
+    @Override
+    public Integer updateUserById(UserDto userDto) {
+        return userMapper.updateUserById(userDto);
+    }
 }
