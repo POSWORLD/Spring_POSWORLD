@@ -4,22 +4,26 @@ import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.repository.PhotoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PhotoServiceImpl implements PhotoService {
-    @Autowired
-    PhotoDto photoDto;
-
     @Autowired
     PhotoMapper photoMapper;
 
     @Override
-    public List<PhotoDto> getPhotoByUserId(PhotoDto photoDto) {
-        return photoMapper.getPhotoByUserId(photoDto);
+    public Integer postPhoto(PhotoDto photoDto) {
+        return photoMapper.insertPhoto(photoDto);
     }
 
     @Override
-    public Integer insertPhoto(PhotoDto photoDto) {
-        return photoMapper.insertPhoto(photoDto);
+    public Integer updatePhoto(PhotoDto photoDto) {
+        return photoMapper.updatePhoto(photoDto);
+    }
+
+    @Override
+    public Integer deletePhoto(PhotoDto photoDto) {
+        return photoMapper.deletePhoto(photoDto);
+
     }
 }

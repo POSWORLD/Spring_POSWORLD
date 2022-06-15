@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService{
         return userMapper.postUser(userDto);
     }
 
-
     @Override
     public UserDto getUserById(UserDto userDto) {
         return userMapper.getUserById(userDto);
@@ -46,4 +45,6 @@ public class UserServiceImpl implements UserService{
     public Integer updateUserById(UserDto userDto) {
         return userMapper.updateUserById(userDto);
     }
+
 }
+

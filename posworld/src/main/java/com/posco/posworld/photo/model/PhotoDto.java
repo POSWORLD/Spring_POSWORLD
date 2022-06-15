@@ -3,6 +3,8 @@ package com.posco.posworld.photo.model;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+
 @Data
 @Component
 public class PhotoDto {
@@ -11,5 +13,5 @@ public class PhotoDto {
     private String title;
     private String content;
     private String img;
-    private String wDate;
+    private Timestamp wDate;
 }

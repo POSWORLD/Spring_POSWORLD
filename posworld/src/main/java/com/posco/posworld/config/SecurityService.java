@@ -23,10 +23,12 @@ public class SecurityService {
     public String createToken(String subject) {
         if(expTime<=0){
             throw new RuntimeException();
+
         }
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
         Key signatureKey = new SecretKeySpec(secretKeyBytes, signatureAlgorithm.getJcaName());
+
 
         return Jwts.builder().setSubject(subject).signWith(signatureKey,
                 signatureAlgorithm).setExpiration(new Date(System.currentTimeMillis()+expTime)).compact();
@@ -38,6 +40,7 @@ public class SecurityService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+
         return claims.getSubject();
     }
     public Integer getIdAtToken() {
@@ -47,6 +50,7 @@ public class SecurityService {
         String tokenBearer = request.getHeader("Authorization");  // 헤더에서 토큰 추출
 
         // 토큰에서 id 빼오는 거
+
         String id = getSubject(tokenBearer);
         return Integer.parseInt(id);
     }

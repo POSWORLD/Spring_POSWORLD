@@ -26,4 +26,6 @@ public class SecurityAspect {
         if(tokenBearer.isEmpty()) throw new IllegalAccessException("token isNull");
         if(securityService.getSubject(tokenBearer)==null) throw new IllegalAccessException("bad token");
     }
+
 }
+

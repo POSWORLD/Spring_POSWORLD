@@ -79,4 +79,6 @@ public class UserController {
         userDto.setId(Integer.valueOf(securityService.getIdAtToken()));
         return userService.updateUserById(userDto);
     }
+
 }
+
