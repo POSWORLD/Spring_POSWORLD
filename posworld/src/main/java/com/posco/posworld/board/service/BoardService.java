@@ -8,4 +8,7 @@ public interface BoardService {
     Integer insertBoard(BoardDto boardDto);
     List<BoardDto> getBoardByUser(BoardDto boardDto);
     List<BoardDto> getBoards();
+
+    Integer deleteBoard(BoardDto boardDto);
+    Integer updateBoard(BoardDto boardDto);
 }

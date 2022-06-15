@@ -31,6 +31,19 @@ public class BoardController {
        return boardService.insertBoard(boardDto);
 
     }
+    @DeleteMapping("/{num}")
+    public Integer deletePost(@PathVariable String num){
+        boardDto.setNum(Integer.valueOf(num));
+        boardDto.setFriendId(securityService.getIdAtToken());
+        return boardService.deleteBoard(boardDto);
+    }
+    @PutMapping("/{num}")
+    public Integer updateBoard(@RequestBody BoardDto boardDto, @PathVariable String num){
+        boardDto.setFriendId(securityService.getIdAtToken());
+        boardDto.setNum(Integer.valueOf(num));
+        return boardService.updateBoard(boardDto);
+    }
+
 
 
 }
