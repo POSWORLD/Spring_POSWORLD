@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posco.posworld.pComment.repository.PcommentMapper">
+    <select id="getCommentbyPhoto" resultType="Map">
+        SELECT p.id,p.pid, u.name, p.content, p.wdate
+        FROM pcommenttbl as p
+        INNER JOIN usertbl as u on p.userId = u.id
+        where pid= #{pid};
+    </select>
+
+    <insert id="insertPComment" parameterType="PcommentDto">
+        insert into pcommenttbl(pid, userId, content)
+        values (#{pid}, #{userId}, #{content});
+    </insert>
+
+    <delete id="deletePComment" parameterType="PcommentDto">
+        DELETE from pcommenttbl where id = #{id} and userId = #{userId};
+    </delete>
+
+
+</mapper>

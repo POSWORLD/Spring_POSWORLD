@@ -12,23 +12,29 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = IllegalAccessException.class)
+
     public ResponseEntity<Map<String, Object>> illegalAccessException(IllegalAccessException e) {
+
         Map<String, Object> map = new HashMap<>();
         map.put("errMsg", e.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
     }
 
     @ExceptionHandler(value = ExpiredJwtException.class)
-    public ResponseEntity<Map<String, Object>> expiredJwtException(ExpiredJwtException e) {
+
+    public ResponseEntity<Map<String, Object>> expiredJwtException (ExpiredJwtException e){
         Map<String, Object> map = new HashMap<>();
-        map.put("errMsg", "토큰 문제 있음");
+        map.put("errMsg", "jwt token err");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(map);
     }
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<Map<String, Object>> exception(Exception e) {
+
+    public ResponseEntity<Map<String, Object>> exception (Exception e){
         Map<String, Object> map = new HashMap<>();
-        map.put("errMsg", e.getMessage());
+        map.put("errMsg",  e.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(map);
     }
 }
+
+ 

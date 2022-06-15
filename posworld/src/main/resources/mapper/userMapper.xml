@@ -21,4 +21,18 @@
         INSERT INTO usertbl (userId, pw, name, gender, proPhoto)
         VALUES (#{userId}, #{pw} ,#{name}, #{gender}, "p")
     </insert>
+    <select id="getUserById" parameterType="UserDto" resultType="UserDto">
+        SELECT id, userId, name, gender, proPhoto
+        FROM usertbl
+        WHERE id=#{id}
+    </select>
+    <update id="updateUserById" parameterType="UserDto">
+        UPDATE usertbl
+        <set>
+            <if test="proPhoto!=null">proPhoto = #{proPhoto},</if>
+            <if test="name!=null">name = #{name},</if>
+            <if test="pw!=null">pw = #{pw},</if>
+        </set>
+        WHERE id=#{id}
+    </update>
 </mapper>

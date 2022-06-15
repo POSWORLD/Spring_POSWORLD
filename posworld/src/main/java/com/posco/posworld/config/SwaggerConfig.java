@@ -12,15 +12,22 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
     @Bean
+    public Docket Docket() {
+        return new Docket(DocumentationType.OAS_30)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld"))
+
     public Docket api1() {
         return new Docket(DocumentationType.OAS_30)
                 .groupName("user")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.user.controller"))
+
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
     }
+
 
     @Bean
     public Docket api2() {
@@ -32,6 +39,7 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo());
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("posworld")
