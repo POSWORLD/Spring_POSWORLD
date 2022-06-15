@@ -13,5 +13,6 @@ public interface UserService {
     UserDto getUserById(UserDto userDto);
 
     Integer updateUserById(UserDto userDto);
-   
+
+    Integer getUserCount();
 }

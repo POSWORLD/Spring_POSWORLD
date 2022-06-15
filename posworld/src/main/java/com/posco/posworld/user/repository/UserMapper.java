@@ -15,4 +15,5 @@ public interface UserMapper {
     Integer postUser(UserDto userDto);
     UserDto getUserById(UserDto userDto);
     Integer updateUserById(UserDto userDto);
+    Integer getUserCount();
 }

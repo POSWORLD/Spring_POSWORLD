@@ -2,6 +2,9 @@ package com.posco.posworld.user.controller;
 
 import com.posco.posworld.aspect.TokenRequired;
 import com.posco.posworld.config.SecurityService;
+import com.posco.posworld.home.model.HomeDto;
+import com.posco.posworld.home.service.HomeService;
+import com.posco.posworld.home.service.HomeServiceImpl;
 import com.posco.posworld.user.model.UserDto;
 import com.posco.posworld.user.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,6 +52,12 @@ public class UserController {
     @Autowired
     UserDto userDto;
 
+    @Autowired
+    HomeServiceImpl homeService;
+
+    @Autowired
+    HomeDto homeDto;
+
     @GetMapping("")
     public List<UserDto> getUser() {return userService.findUser(); }
 
@@ -63,7 +72,7 @@ public class UserController {
         map.put("name", loginUser.getName());
         map.put("gender", loginUser.getGender());
         map.put("proPhoto", loginUser.getProPhoto());
-
+        map.put("id", loginUser.getId());
         return map;
     }
 
@@ -82,9 +91,15 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<?> postUser(@RequestBody UserDto userDto) {
-        HttpStatus httpStatus = userService.insertUser(userDto)==1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
-        return new ResponseEntity<>(httpStatus);
+    public Integer postUser(@RequestBody UserDto userDto) {
+        Integer result = userService.insertUser(userDto);
+        Integer response = 0;
+        if(result==1){
+            UserDto newUser = userService.getUserByUserId(userDto);
+            homeDto.setUserId(newUser.getId());
+            response = homeService.insertHome(homeDto);
+        }
+        return response;
     }
 
     @GetMapping("/me")
@@ -102,5 +117,10 @@ public class UserController {
         return userService.updateUserById(userDto);
     }
 
+    @GetMapping("/count")
+    @TokenRequired
+    public Integer getUserCount() {
+        return userService.getUserCount();
+    }
 }
 
