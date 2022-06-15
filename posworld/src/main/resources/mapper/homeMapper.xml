@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posco.posworld.home.repository.HomeMapper">
+    <insert id="insertHome" parameterType="HomeDto">
+        INSERT INTO
+            hometbl( userId,title, photo, content, bgm)
+        VALUES
+            (#{userId}, #{title}, #{photo}, #{content}, #{bgm})
+    </insert>
+    <update id="updateHome" parameterType="HomeDto">
+        UPDATE hometbl
+        <set>
+            <if test="title!=null">title = #{title},</if>
+            <if test="photo!=null">photo = #{photo},</if>
+            <if test="content!=null">content = #{content},</if>
+            <if test="bgm!=null">bgm = #{bgm}</if>
+        </set>
+        WHERE
+            id = #{id} and userId=#{userId}
+    </update>
+</mapper>
