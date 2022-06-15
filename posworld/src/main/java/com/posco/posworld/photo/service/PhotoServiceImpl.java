@@ -3,6 +3,7 @@ package com.posco.posworld.photo.service;
 import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.repository.PhotoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +24,6 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public Integer deletePhoto(PhotoDto photoDto) {
         return photoMapper.deletePhoto(photoDto);
+
     }
 }

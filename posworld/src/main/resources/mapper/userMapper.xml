@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.posco.posworld.user.repository.UserMapper">
+    <select id="getUser" resultType="UserDto">
+        SELECT id, userId, name, gender, proPhoto
+        FROM usertbl
+    </select>
+    <select id="getUserByUserIdAndPassword" resultType="UserDto">
+        SELECT id, userId, name, gender, proPhoto
+        FROM usertbl
+        WHERE userId=#{userId} and pw=#{pw}
+    </select>
+    <select id="getUserByUserId" resultType="UserDto" parameterType="UserDto">
+        SELECT id, userId, name, gender, proPhoto
+        FROM usertbl
+        WHERE userId=#{userId}
+    </select>
+    <insert id="postUser" parameterType="UserDto">
+        INSERT INTO usertbl (userId, pw, name, gender, proPhoto)
+        VALUES (#{userId}, #{pw} ,#{name}, #{gender}, "p")
+    </insert>
+    <select id="getUserById" parameterType="UserDto" resultType="UserDto">
+        SELECT id, userId, name, gender, proPhoto
+        FROM usertbl
+        WHERE id=#{id}
+    </select>
+    <update id="updateUserById" parameterType="UserDto">
+        UPDATE usertbl
+        <set>
+            <if test="proPhoto!=null">proPhoto = #{proPhoto},</if>
+            <if test="name!=null">name = #{name},</if>
+            <if test="pw!=null">pw = #{pw},</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

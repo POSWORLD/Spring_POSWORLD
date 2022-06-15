@@ -1,8 +1,8 @@
 package com.posco.posworld.config;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -18,10 +18,9 @@ import java.util.Date;
 public class SecurityService {
     @Value("${jwt.secret_key}")
     String SECRET_KEY;
-
     @Value("${jwt.expTime}")
     long expTime;
-    public String createToken(String subject){
+    public String createToken(String subject) {
         if(expTime<=0){
             throw new RuntimeException();
 
@@ -29,27 +28,29 @@ public class SecurityService {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
         Key signatureKey = new SecretKeySpec(secretKeyBytes, signatureAlgorithm.getJcaName());
-        return Jwts.builder()
-                .setSubject(subject)
-                .signWith(signatureKey, signatureAlgorithm)
-                .setExpiration(new Date(System.currentTimeMillis()+expTime)).compact();
+
+
+        return Jwts.builder().setSubject(subject).signWith(signatureKey,
+                signatureAlgorithm).setExpiration(new Date(System.currentTimeMillis()+expTime)).compact();
     }
-    public String getSubject(String tokenBearer){
+    public String getSubject(String tokenBearer) {
         String token = tokenBearer.substring("Bearer ".length());
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        return  claims.getSubject();
+
+        return claims.getSubject();
     }
-
-    public Integer getIdAtToken(){
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+    public Integer getIdAtToken() {
+        // 헤더에서 빼오는 거
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();  // 헤더 가져오기
         HttpServletRequest request = requestAttributes.getRequest();
-        String tokenBearer = request.getHeader("Authorization");
+        String tokenBearer = request.getHeader("Authorization");  // 헤더에서 토큰 추출
 
-        //토큰에서 id값 가져오기
+        // 토큰에서 id 빼오는 거
+
         String id = getSubject(tokenBearer);
         return Integer.parseInt(id);
     }

@@ -8,8 +8,9 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     List<UserDto> getUser();
-    UserDto getUserByUserId(UserDto userDto);
+
     UserDto getUserByUserIdAndPassword(UserDto userDto);
+    UserDto getUserByUserId(UserDto userDto);
     Integer postUser(UserDto userDto);
     UserDto getUserById(UserDto userDto);
     Integer updateUserById(UserDto userDto);

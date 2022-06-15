@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
 
 @Component
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE_USE})
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface TokenRequired {
 }
+

@@ -6,4 +6,5 @@ public interface PhotoService {
     Integer postPhoto(PhotoDto photoDto);
     Integer updatePhoto(PhotoDto photoDto);
     Integer deletePhoto(PhotoDto photoDto);
+
 }

@@ -16,15 +16,33 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.posco.posworld"))
+
+    public Docket api1() {
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("user")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.user.controller"))
+
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
     }
 
+
+    @Bean
+    public Docket api2() {
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("post")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.post.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(apiInfo());
+    }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Posworld")
-                .description("Posworld api docs")
+                .title("posworld")
+                .description("posworld api docs")
                 .version("1.0")
                 .build();
     }

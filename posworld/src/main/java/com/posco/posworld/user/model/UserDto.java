@@ -9,7 +9,8 @@ public class UserDto {
     private Integer id;
     private String userId;
     private String pw;
-    private String gender;
+
     private String name;
+    private String gender;
     private String proPhoto;
 }
