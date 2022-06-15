@@ -7,6 +7,8 @@ import com.posco.posworld.photo.service.PhotoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("photo")
 @TokenRequired
@@ -36,5 +38,11 @@ public class PhotoController {
         photoDto.setUserId(securityService.getIdAtToken());
         photoDto.setId(Integer.valueOf(id));
         return photoService.deletePhoto(photoDto);
+    }
+
+    @GetMapping("/{id}")
+    public List<PhotoDto> selectPhoto(@PathVariable String id){
+        photoDto.setUserId(securityService.getIdAtToken());
+        return photoService.selectPhoto(photoDto);
     }
 }
