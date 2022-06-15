@@ -33,5 +33,4 @@ public class LoggingAspect {
         log.info("after : "+afterTimeMillis+", 시간차 : "+(afterTimeMillis-beforeTimeMillis));
         return result;
     }
-
 }

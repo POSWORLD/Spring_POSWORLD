@@ -9,6 +9,5 @@ public interface UserService {
     UserDto serviceLogin(UserDto userDto);
     UserDto getUserByUserId(UserDto userDto);
     Integer insertUser(UserDto userDto);
-    UserDto getUserById(UserDto userDto);
-    Integer updateUserById(UserDto userDto);
+   
 }
