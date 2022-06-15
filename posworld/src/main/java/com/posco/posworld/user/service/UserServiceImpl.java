@@ -45,6 +45,5 @@ public class UserServiceImpl implements UserService{
     public Integer updateUserById(UserDto userDto) {
         return userMapper.updateUserById(userDto);
     }
-
 }
 
