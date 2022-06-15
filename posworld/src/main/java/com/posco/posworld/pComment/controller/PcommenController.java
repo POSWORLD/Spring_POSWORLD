@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("pComment")
@@ -26,9 +27,9 @@ public class PcommenController {
     public Boolean test(){
         return true;
     }
-    @GetMapping("/{id}")
-    public List<PcommentDto> getPcomment(@PathVariable String id){
-        pcommentDto.setPid(Integer.valueOf(id));
+    @GetMapping("/{pid}")
+    public List<Map> getPcomment(@PathVariable String pid){
+        pcommentDto.setPid(Integer.valueOf(pid));
         return pcommentService.getCommentbyPhoto(pcommentDto);
     }
 

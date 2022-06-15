@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PcommentServiceImpl implements PcommentService{
@@ -17,7 +18,7 @@ public class PcommentServiceImpl implements PcommentService{
     }
 
     @Override
-    public List<PcommentDto> getCommentbyPhoto(PcommentDto pcommentDto) {
+    public List<Map> getCommentbyPhoto(PcommentDto pcommentDto) {
         return pcommentMapper.getCommentbyPhoto(pcommentDto);
     }
 

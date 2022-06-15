@@ -3,9 +3,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.posco.posworld.pComment.repository.PcommentMapper">
-    <select id="getCommentbyPhoto" resultType="PcommentDto">
-        SELECT id,pid, userId, content, wdate
-        FROM pcommenttbl
+    <select id="getCommentbyPhoto" resultType="Map">
+        SELECT p.id,p.pid, u.name, p.content, p.wdate
+        FROM pcommenttbl as p
+        INNER JOIN usertbl as u on p.userId = u.id
         where pid= #{pid};
     </select>
 
