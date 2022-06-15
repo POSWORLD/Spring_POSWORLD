@@ -12,12 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
     @Bean
-    public Docket Docket() {
-        return new Docket(DocumentationType.OAS_30)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld"))
-
-    public Docket api1() {
+        public Docket api1() {
         return new Docket(DocumentationType.OAS_30)
                 .groupName("user")
                 .select()
@@ -40,11 +35,44 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
+    @Bean
+    public Docket api3() {
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("photo")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.photo.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    @Bean
+    public Docket api4() {
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("pComment")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.pComment.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    @Bean
+    public Docket api5() {
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("home")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.posco.posworld.home.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(apiInfo());
+    }
+
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("posworld")
-                .description("posworld api docs")
-                .version("1.0")
-                .build();
+            return new ApiInfoBuilder()
+                    .title("posworld")
+                    .description("posworld api docs")
+                    .version("1.0")
+                    .build();
     }
 }
