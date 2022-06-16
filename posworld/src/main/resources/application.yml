@@ -21,7 +21,7 @@ spring:
       max-request-size: 10MB
 
 
-file: C:\Users\klove\Documents\Spring_POSWORLD\posworld\src\main\resources\static
+file: E:\Spring_POSWORLD\posworld\src\main\resources\static
 
 
 mybatis:

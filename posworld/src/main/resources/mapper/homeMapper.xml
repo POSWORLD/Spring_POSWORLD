@@ -3,11 +3,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.posco.posworld.home.repository.HomeMapper">
+    <select id="getHome" parameterType="HomeDto" resultType="HomeDto">
+        SELECT *
+        FROM hometbl
+        WHERE userId = #{userId}
+    </select>
+
+
     <insert id="insertHome" parameterType="HomeDto">
         INSERT INTO
-            hometbl( userId,title, photo, content, bgm)
+        hometbl( userId,title, photo, content, bgm)
         VALUES
-            (#{userId}, #{title}, #{photo}, #{content}, #{bgm})
+        (#{userId}, #{title}, #{photo}, #{content}, #{bgm})
     </insert>
     <update id="updateHome" parameterType="HomeDto">
         UPDATE hometbl
@@ -18,6 +25,6 @@
             <if test="bgm!=null">bgm = #{bgm}</if>
         </set>
         WHERE
-            id = #{id} and userId=#{userId}
+        userId=#{userId}
     </update>
 </mapper>
