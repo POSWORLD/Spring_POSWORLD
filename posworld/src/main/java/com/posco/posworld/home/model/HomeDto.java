@@ -4,7 +4,10 @@ import io.swagger.models.auth.In;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+
 @Data
+@Entity
 @Component
 public class HomeDto {
     private Integer id;

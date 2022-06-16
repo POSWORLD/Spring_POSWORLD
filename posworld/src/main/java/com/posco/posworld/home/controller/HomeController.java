@@ -25,10 +25,7 @@ public class HomeController {
     @Autowired
     HomeDto homeDto;
 
-    @Autowired
-    UserServiceImpl userService;
-    @Autowired
-    UserDto userDto;
+
 
     @PostMapping("/")
     public Integer InsertHome(@RequestBody HomeDto homeDto){

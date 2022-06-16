@@ -12,6 +12,11 @@ spring:
     url:  jdbc:mysql://localhost:3306/posworld?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: 1234
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    #    generate-ddl: true
+    show-sql: true
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -22,7 +27,7 @@ spring:
 
 
 
-file: C:\Users\klove\Documents\Spring_POSWORLD\posworld\src\main\resources\static
+file: E:\Spring_POSWORLD\posworld\src\main\resources\static
 
 
 mybatis:
