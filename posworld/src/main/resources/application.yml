@@ -1,4 +1,3 @@
-
 server:
   port : 8001
 spring:
@@ -21,7 +20,7 @@ spring:
       max-request-size: 10MB
 
 
-file: C:\Users\klove\Documents\Spring_POSWORLD\posworld\src\main\resources\static
+file: C:\Users\hjuhe\OneDrive\Documents\GitHub\Spring_POSWORLD\Spring_POSWORLD\posworld\src\main\resources\static
 
 
 mybatis:
