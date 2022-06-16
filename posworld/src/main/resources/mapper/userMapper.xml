@@ -7,7 +7,7 @@
         SELECT id, userId, name, gender, proPhoto
         FROM usertbl
     </select>
-    <select id="getUserByUserIdAndPassword" resultType="UserDto">
+    <select id="getUserByUserIdAndPassword" parameterType="userDto" resultType="UserDto">
         SELECT id, userId, name, gender, proPhoto
         FROM usertbl
         WHERE userId=#{userId} and pw=#{pw}
@@ -35,4 +35,9 @@
         </set>
         WHERE id=#{id}
     </update>
+    <select id="getUserCount" resultType="Integer">
+        SELECT count(*)
+        FROM usertbl
+    </select>
+
 </mapper>

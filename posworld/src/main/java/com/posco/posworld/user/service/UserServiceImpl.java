@@ -46,6 +46,11 @@ public class UserServiceImpl implements UserService{
         return userMapper.updateUserById(userDto);
     }
 
+    @Override
+    public Integer getUserCount() {
+        return userMapper.getUserCount();
+    }
+
 }
 
 
