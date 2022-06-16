@@ -12,6 +12,5 @@ public interface HomeMapper {
 
     Integer insertHome(HomeDto homeDto);
     Integer updateHome(HomeDto homeDto);
-    HomeDto getHome(HomeDto homeDto);
 
 }
