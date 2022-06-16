@@ -9,4 +9,6 @@ public interface PhotoMapper {
     Integer insertPhoto(PhotoDto photoDto);
     Integer updatePhoto(PhotoDto photoDto);
     Integer deletePhoto(PhotoDto photoDto);
+
+    List<PhotoDto> selectPhoto(PhotoDto photoDto);
 }

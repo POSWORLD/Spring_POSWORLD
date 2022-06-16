@@ -23,4 +23,9 @@
         WHERE id = #{id} AND userId = #{userId}
     </delete>
 
+    <select id="selectPhoto" resultType="PhotoDto">
+        SELECT * FROM phototbl
+        where userId = #{userId};
+    </select>
+
 </mapper>

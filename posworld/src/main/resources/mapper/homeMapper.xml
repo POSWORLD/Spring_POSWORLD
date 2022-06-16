@@ -13,6 +13,7 @@
             hometbl( userId, title, photo, content, bgm)
         VALUES
             (#{userId}, "t", "p", "c", "b")
+
     </insert>
     <update id="updateHome" parameterType="HomeDto">
         UPDATE hometbl
@@ -23,6 +24,6 @@
             <if test="bgm!=null">bgm = #{bgm}</if>
         </set>
         WHERE
-            id = #{id} and userId=#{userId}
+        userId=#{userId}
     </update>
 </mapper>

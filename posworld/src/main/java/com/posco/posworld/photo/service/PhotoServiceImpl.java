@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PhotoServiceImpl implements PhotoService {
     @Autowired
@@ -25,5 +27,10 @@ public class PhotoServiceImpl implements PhotoService {
     public Integer deletePhoto(PhotoDto photoDto) {
         return photoMapper.deletePhoto(photoDto);
 
+    }
+
+    @Override
+    public List<PhotoDto> selectPhoto(PhotoDto photoDto) {
+        return photoMapper.selectPhoto(photoDto);
     }
 }

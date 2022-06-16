@@ -3,6 +3,7 @@ package com.posco.posworld.home.controller;
 import com.posco.posworld.aspect.TokenRequired;
 import com.posco.posworld.config.SecurityService;
 import com.posco.posworld.home.model.HomeDto;
+
 import com.posco.posworld.home.service.HomeServiceImpl;
 import com.posco.posworld.user.model.UserDto;
 import com.posco.posworld.user.service.UserServiceImpl;
@@ -10,6 +11,8 @@ import io.swagger.models.auth.In;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/home")
@@ -42,6 +45,7 @@ public class HomeController {
     public HomeDto getHome(@PathVariable String id){
         homeDto.setUserId(Integer.valueOf(id));
         return homeService.getHome(homeDto);
+
     }
 
 }
