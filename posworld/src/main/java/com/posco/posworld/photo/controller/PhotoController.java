@@ -5,7 +5,10 @@ import com.posco.posworld.config.SecurityService;
 import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.service.PhotoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("photo")
@@ -43,10 +46,15 @@ public class PhotoController {
         return photoService.updatePhoto(photoDto);
     }
 
+//    @DeleteMapping("/{id}")
+//    public void deletePhoto(@PathVariable String id) {
+////        photoDto.setUserId(securityService.getIdAtToken());
+//        photoDto.setId(Integer.valueOf(id));
+//        photoService.deletePhoto(photoDto.getId());
+//    }
+
     @DeleteMapping("/{id}")
-    public void deletePhoto(@PathVariable String id) {
-//        photoDto.setUserId(securityService.getIdAtToken());
-        photoDto.setId(Integer.valueOf(id));
-        photoService.deletePhoto(photoDto.getId());
+    public ResponseEntity<Map<String,Boolean>> deleteBoard(@PathVariable String id) {
+        return photoService.deleteBoard(Integer.valueOf(id));
     }
 }
