@@ -1,55 +1,93 @@
 package com.posco.posworld.user.service;
 
 import com.posco.posworld.user.model.UserDto;
-import com.posco.posworld.user.repository.UserMapper;
+import com.posco.posworld.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
-    @Autowired
-    UserMapper userMapper;
+    @Autowired UserRepository userRepository;
+    @Override
+    public UserDto insertUser(UserDto userDto) {
+        return userRepository.save(userDto);
+    }
 
     @Override
     public List<UserDto> findUser() {
-        return userMapper.getUser();
+        return userRepository.findAll();
     }
 
     @Override
-    public UserDto serviceLogin(UserDto userDto) {
-        return userMapper.getUserByUserIdAndPassword(userDto);
+    public UserDto serviceLogin(String userid, String pw) {
+        return userRepository.findByUseridAndPw(userid,pw);
     }
 
     @Override
-    public UserDto getUserByUserId(UserDto userDto) {
-        return userMapper.getUserByUserId(userDto);
+    public UserDto getUserByUserId(String userid) {
+        return userRepository.findByUserid(userid);
     }
 
     @Override
-    public Integer insertUser(UserDto userDto) {
-        return userMapper.postUser(userDto);
+    public UserDto getUserById(Integer id) {
+        return userRepository.findById(id).get();
     }
 
     @Override
-    public UserDto getUserById(UserDto userDto) {
-        return userMapper.getUserById(userDto);
+    public UserDto updateUserById(UserDto userDto) {
+        UserDto newUser = getUserById(userDto.getId());
+        newUser.setPw(userDto.getPw());
+        newUser.setName(userDto.getName());
+        newUser.setProphoto(userDto.getProphoto());
+        return userRepository.save(newUser);
     }
 
     @Override
-    public Integer updateUserById(UserDto userDto) {
-        return userMapper.updateUserById(userDto);
+    public Long getUserCount() {
+        return userRepository.count();
     }
 
-    @Override
-    public Integer getUserCount() {
-        return userMapper.getUserCount();
-    }
+
+//    @Autowired
+//    UserMapper userMapper;
+//
+//    @Override
+//    public List<UserDto> findUser() {
+//        return userMapper.getUser();
+//    }
+//
+//    @Override
+//    public UserDto serviceLogin(UserDto userDto) {
+//        return userMapper.getUserByUserIdAndPassword(userDto);
+//    }
+//
+//    @Override
+//    public UserDto getUserByUserId(UserDto userDto) {
+//        return userMapper.getUserByUserId(userDto);
+//    }
+//
+//    @Override
+//    *public Integer insertUser(UserDto userDto) {
+//        return userMapper.postUser(userDto);
+//    }
+//
+//    @Override
+//    public UserDto getUserById(UserDto userDto) {
+//        return userMapper.getUserById(userDto);
+//    }
+//
+//    @Override
+//    public Integer updateUserById(UserDto userDto) {
+//        return userMapper.updateUserById(userDto);
+//    }
+//
+//    @Override
+//    public Integer getUserCount() {
+//        return userMapper.getUserCount();
+//    }
 
 }
 
