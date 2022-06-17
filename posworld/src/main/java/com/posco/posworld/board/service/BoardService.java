@@ -7,7 +7,7 @@ import java.util.List;
 public interface BoardService {
     Integer insertBoard(BoardDto boardDto);
     List<BoardDto> getBoardByUser(BoardDto boardDto);
-    List<BoardDto> getBoards();
+    List<BoardDto> getBoards(BoardDto boardDto);
 
     Integer deleteBoard(BoardDto boardDto);
     Integer updateBoard(BoardDto boardDto);

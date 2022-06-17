@@ -19,10 +19,10 @@ public class BoardController {
     SecurityService securityService;
     @Autowired
     BoardServiceImpl boardService;
-    @GetMapping("/")
-    public List<BoardDto> getBoards(){
-        boardDto.setHomeId(securityService.getIdAtToken());
-        return boardService.getBoards();
+    @GetMapping("/{homeId}")
+    public List<BoardDto> getBoards(@PathVariable String homeId){
+        boardDto.setHomeId(Integer.valueOf(homeId));
+        return boardService.getBoards(boardDto);
     }
 
     @PostMapping("/")
