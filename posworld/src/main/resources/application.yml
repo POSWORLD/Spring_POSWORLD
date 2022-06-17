@@ -7,6 +7,8 @@ spring:
       enabled: true
   thymeleaf:
     cache: false
+  jpa:
+    show-sql: true
 
   datasource:
     url:  jdbc:mysql://localhost:3306/posworld?serverTimezone=UTC&characterEncoding=UTF-8
@@ -22,7 +24,7 @@ spring:
 
 
 
-file: C:\Users\klove\Documents\Spring_POSWORLD\posworld\src\main\resources\static
+file: C:\Users\hjuhe\OneDrive\Documents\GitHub\Spring_POSWORLD\Spring_POSWORLD\posworld\src\main\resources\static
 
 
 mybatis:
