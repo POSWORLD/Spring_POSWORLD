@@ -4,8 +4,10 @@
     <insert id="insertBoard" parameterType="BoardDto" useGeneratedKeys="true" keyProperty="friendId">
         INSERT INTO boardtbl (homeId, content, friendId) VALUES (#{homeId}, #{content}, #{friendId})
     </insert>
-    <select id="getBoards" resultType="BoardDto">
-        SELECT num, homeId, content, wDate, friendId FROM boardtbl
+    <select id="getBoards" resultType="SelectJoinDto" parameterType="BoardDto">
+        SELECT b.num, b.homeId, b.content, b.wDate, b.friendId, u.name
+            As friendName, u.proPhoto As friendImg FROM boardtbl as b
+                INNER JOIN usertbl as u ON b.friendId = u.id WHERE homeId= #{homeId}
     </select>
     <delete id="deleteBoard" parameterType="BoardDto">
         DELETE FROM boardtbl WHERE num = #{num} AND friendId = #{friendId}
