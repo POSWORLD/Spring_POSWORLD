@@ -2,15 +2,9 @@ package com.posco.posworld.photo.service;
 
 import com.posco.posworld.photo.model.PhotoDto;
 
-import java.util.List;
-
 public interface PhotoService {
-    Integer postPhoto(PhotoDto photoDto);
-    Integer updatePhoto(PhotoDto photoDto);
-    Integer deletePhoto(PhotoDto photoDto);
-
-    List<PhotoDto> selectPhoto(PhotoDto photoDto);
-
-    PhotoDto selectPhotoById(PhotoDto photoDto);
-
+    PhotoDto postPhoto(PhotoDto photoDto);
+    PhotoDto updatePhoto(PhotoDto photoDto);
+    void deletePhoto(int id);
+    PhotoDto getPhotoOne(int id);
 }
