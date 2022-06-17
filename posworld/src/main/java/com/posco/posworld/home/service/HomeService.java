@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface HomeService {
 
-    Integer insertHome(HomeDto homeDto);
-    Integer updateHome(HomeDto homeDto);
-    HomeDto getHome(HomeDto homeDto);
+//    Integer insertHome(HomeDto homeDto);
+//    Integer updateHome(HomeDto homeDto);
+    HomeDto getHome(Integer id);
+    HomeDto insertHome(HomeDto homeDto);
 
 }
