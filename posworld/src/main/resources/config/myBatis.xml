@@ -7,14 +7,12 @@
         <package name="com.posco.posworld.user.model"/>
         <package name="com.posco.posworld.board.model"/>
         <package name="com.posco.posworld.home.model"/>
-        <package name="com.posco.posworld.photo.model"/>
         <package name="com.posco.posworld.pComment.model"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/userMapper.xml" />
         <mapper resource="mapper/boardMapper.xml"/>
         <mapper resource="mapper/homeMapper.xml" />
-        <mapper resource="mapper/photoMapper.xml"/>
         <mapper resource="mapper/pCommentMapper.xml"/>
     </mappers>
 </configuration>

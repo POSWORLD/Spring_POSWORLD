@@ -43,8 +43,8 @@ public class HomeController {
 
     @GetMapping("/{id}")
     public HomeDto getHome(@PathVariable String id){
-
-        return homeService.getHome(Integer.valueOf(id));
+        homeDto.setId(Integer.parseInt(id));
+        return homeService.getHome(homeDto);
 
     }
     @PostMapping("/")
