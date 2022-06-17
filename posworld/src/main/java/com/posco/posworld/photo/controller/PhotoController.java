@@ -45,4 +45,10 @@ public class PhotoController {
         photoDto.setUserId(securityService.getIdAtToken());
         return photoService.selectPhoto(photoDto);
     }
+
+    @GetMapping("/detail/{id}")
+    public PhotoDto selectPhotoById(@PathVariable String id){
+        photoDto.setId(Integer.valueOf(id));
+        return photoService.selectPhotoById(photoDto);
+    }
 }

@@ -11,4 +11,6 @@ public interface PhotoService {
 
     List<PhotoDto> selectPhoto(PhotoDto photoDto);
 
+    PhotoDto selectPhotoById(PhotoDto photoDto);
+
 }
