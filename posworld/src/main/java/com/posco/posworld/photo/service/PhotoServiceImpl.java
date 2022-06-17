@@ -33,4 +33,9 @@ public class PhotoServiceImpl implements PhotoService {
     public List<PhotoDto> selectPhoto(PhotoDto photoDto) {
         return photoMapper.selectPhoto(photoDto);
     }
+
+    @Override
+    public PhotoDto selectPhotoById(PhotoDto photoDto){
+        return photoMapper.selectPhotoById(photoDto);
+    }
 }

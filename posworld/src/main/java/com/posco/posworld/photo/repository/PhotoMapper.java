@@ -11,4 +11,6 @@ public interface PhotoMapper {
     Integer deletePhoto(PhotoDto photoDto);
 
     List<PhotoDto> selectPhoto(PhotoDto photoDto);
+
+    PhotoDto selectPhotoById(PhotoDto photoDto);
 }

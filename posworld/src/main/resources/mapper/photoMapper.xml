@@ -28,4 +28,9 @@
         where userId = #{userId};
     </select>
 
+    <select id="selectPhotoById" resultType="PhotoDto">
+        SELECT * FROM phototbl
+        where id = #{id};
+    </select>
+
 </mapper>
