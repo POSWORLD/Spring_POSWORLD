@@ -20,14 +20,8 @@ public class HomeController {
     @Autowired
     SecurityService securityService;
 
-
-
-
-
-
     @GetMapping("/{id}")
     public HomeDto getHome(@PathVariable String id){
-
         return homeService.getHome(Integer.parseInt(id));
 
     }
