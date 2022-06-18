@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -64,6 +65,12 @@ public class PhotoController {
             System.out.println("[ERROR] " + e.getMessage());
             return 0;
         }
+    }
+
+    @GetMapping("/{userid}")
+    public List<PhotoDto> getPhoto(@PathVariable String userid ){
+        photoDto.setUserid(Integer.valueOf(userid));
+        return photoService.getPhotoByUserId(photoDto.getUserid());
     }
 
 //    @DeleteMapping("/{id}")
