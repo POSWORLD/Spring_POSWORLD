@@ -14,8 +14,6 @@ public class HomeServiceImpl implements HomeService{
     @Autowired
     HomeRepository homeRepository;
 
-
-
     @Override
     public HomeDto getHome(Integer id) {
         return homeRepository.findById(id).get();
