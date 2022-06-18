@@ -1,6 +1,6 @@
 package com.posco.posworld.user.controller;
 
-import com.posco.posworld.aspect.TokenRequired;
+import com.posco.posworld.user.aspect.TokenRequired;
 import com.posco.posworld.config.SecurityService;
 
 import com.posco.posworld.user.model.UserDto;

@@ -1,4 +1,4 @@
-package com.posco.posworld.aspect;
+package com.posco.posworld.user.aspect;
 
 import com.posco.posworld.config.SecurityService;
 import org.aspectj.lang.annotation.Aspect;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.mvc.condition.RequestConditionHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
