@@ -4,7 +4,7 @@ import com.posco.posworld.user.model.UserDto;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface UserService {
     UserDto insertUser(UserDto userDto);
