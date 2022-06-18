@@ -3,6 +3,7 @@ package com.posco.posworld.board.service;
 import com.posco.posworld.board.exception.ResourceNotFoundException;
 import com.posco.posworld.board.model.BoardDto;
 import com.posco.posworld.board.repository.BoardRepository;
+import com.posco.posworld.config.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,20 @@ import java.util.Map;
 public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
+
+
     //방명록 리스트 처리
     public List<BoardDto> boardList(){
         return boardRepository.findAll();
     }
 
     //방명록 작성
+//    public BoardDto insertBoard(@RequestBody BoardDto boardDto){
+//        boardDto.setContent(boardDto.getContent());
+//        boardDto.setFriendid(securityService.getIdAtToken());
+//        boardDto.setHomeid(boardDto.getHomeid()); //홈아이디 받기
+//        return boardRepository.save(boardDto);
+//    }
     public BoardDto insertBoard(@RequestBody BoardDto boardDto){
         return boardRepository.save(boardDto);
     }
@@ -33,10 +42,12 @@ public class BoardService {
 //                .orElseThrow(()-> new ResourceNotFoundException("Board not exist with id :" +num));
 //        return boardRepository.save(boardDto);
 //   }
+
     //getboards
     public List<BoardDto> getBoards(@PathVariable Integer homeid){
         return boardRepository.getBoards(homeid);
     }
+
     //특정 방명록 수정
     public BoardDto updateBoard(@PathVariable Integer num, @RequestBody BoardDto boardDto){
         BoardDto updateBoard = boardRepository.findById(num)
@@ -46,10 +57,6 @@ public class BoardService {
 
         return boardRepository.save(updateBoard);
     }
-
-
-
-
 
     //특정 방명록 삭제
     public ResponseEntity<Map<String, Boolean>> deleteBoard(Integer num){
