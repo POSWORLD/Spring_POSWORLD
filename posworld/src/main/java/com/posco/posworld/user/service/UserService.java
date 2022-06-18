@@ -2,17 +2,30 @@ package com.posco.posworld.user.service;
 
 import com.posco.posworld.user.model.UserDto;
 
+
 import java.util.List;
 
+
 public interface UserService {
+    UserDto insertUser(UserDto userDto);
     List<UserDto> findUser();
-    UserDto serviceLogin(UserDto userDto);
-    UserDto getUserByUserId(UserDto userDto);
-    Integer insertUser(UserDto userDto);
+    UserDto serviceLogin(String userid, String pw);
+    UserDto getUserByUserId(String userid);
 
-    UserDto getUserById(UserDto userDto);
+    UserDto getUserById(Integer id);
 
-    Integer updateUserById(UserDto userDto);
+    UserDto updateUserById(UserDto userDto);
 
-    Integer getUserCount();
+    Long getUserCount();
+
+//    *List<UserDto> findUser();
+//    *UserDto serviceLogin(UserDto userDto);
+//    *UserDto getUserByUserId(UserDto userDto);
+//    *Integer insertUser(UserDto userDto);
+//
+//    UserDto getUserById(UserDto userDto);
+//
+//    Integer updateUserById(UserDto userDto);
+//
+//    Integer getUserCount();
 }

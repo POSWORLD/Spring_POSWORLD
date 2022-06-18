@@ -1,31 +1,38 @@
 package com.posco.posworld.home.service;
 
 import com.posco.posworld.home.model.HomeDto;
-import com.posco.posworld.home.repository.HomeMapper;
-import com.posco.posworld.user.repository.UserMapper;
+
+import com.posco.posworld.home.repository.HomeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
 public class HomeServiceImpl implements HomeService{
     @Autowired
-    HomeMapper homeMapper;
+    HomeRepository homeRepository;
+
+
 
     @Override
-    public Integer insertHome(HomeDto homeDto) {
-        return homeMapper.insertHome(homeDto);
+    public HomeDto getHome(Integer id) {
+        return homeRepository.findById(id).get();
     }
 
     @Override
-    public Integer updateHome(HomeDto homeDto) {
-        return homeMapper.updateHome(homeDto);
+    public HomeDto insertHome(HomeDto homeDto) {
+        return homeRepository.save(homeDto);
     }
 
     @Override
-    public HomeDto getHome(HomeDto homeDto) {
-        return homeMapper.getHome(homeDto);
+    public HomeDto updateHome(HomeDto homeDto) {
+        HomeDto newHome = getHome(homeDto.getId());
+        newHome.setTitle(homeDto.getTitle());
+        newHome.setPhoto(homeDto.getPhoto());
+        newHome.setContent(homeDto.getContent());
+        return homeRepository.save(newHome);
     }
 
 }
