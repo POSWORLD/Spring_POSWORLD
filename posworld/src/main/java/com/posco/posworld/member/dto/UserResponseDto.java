@@ -1,15 +1,13 @@
 package com.posco.posworld.member.dto;
 
 import com.posco.posworld.member.entity.Member;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class UserResponseDto {
     private Long id;
     private String userid;
