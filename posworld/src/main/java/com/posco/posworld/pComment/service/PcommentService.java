@@ -3,13 +3,14 @@ package com.posco.posworld.pComment.service;
 import com.posco.posworld.pComment.model.PcommentDto;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 public interface PcommentService {
 
-    Integer insertPcomment(PcommentDto pcommentDto);
+    PcommentDto insertPcomment(PcommentDto pcommentDto);
 
-    List<Map> getCommentbyPhoto(PcommentDto pcommentDto);
+    List<PcommentDto> getCommentbyPhoto(PcommentDto pcommentDto);
+
 
     Integer deletePComment(PcommentDto pcommentDto);
 }

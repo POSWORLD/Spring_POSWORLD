@@ -1,30 +1,31 @@
 package com.posco.posworld.pComment.service;
 
 import com.posco.posworld.pComment.model.PcommentDto;
-import com.posco.posworld.pComment.repository.PcommentMapper;
+import com.posco.posworld.pComment.repository.PcommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class PcommentServiceImpl implements PcommentService{
     @Autowired
-    PcommentMapper pcommentMapper;
+    PcommentRepository pcommentRepository;
     @Override
-    public Integer insertPcomment(PcommentDto pcommentDto) {
-        return pcommentMapper.insertPComment(pcommentDto);
+    public PcommentDto insertPcomment(PcommentDto pcommentDto) {
+        return pcommentRepository.save(pcommentDto);
     }
 
+
     @Override
-    public List<Map> getCommentbyPhoto(PcommentDto pcommentDto) {
-        return pcommentMapper.getCommentbyPhoto(pcommentDto);
+    public List<PcommentDto> getCommentbyPhoto(PcommentDto pcommentDto) {
+        return pcommentRepository.findByPid(pcommentDto.getPid());
     }
 
     @Override
     public Integer deletePComment(PcommentDto pcommentDto) {
-        return pcommentMapper.deletePComment(pcommentDto);
+        return pcommentRepository.deleteByIds(pcommentDto.getId(), pcommentDto.getUserid());
     }
 
 
