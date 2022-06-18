@@ -1,12 +1,16 @@
 package com.posco.posworld.member.controller;
 
+import com.mysql.cj.log.Log;
 import com.posco.posworld.member.dto.ChangePasswordRequestDto;
 import com.posco.posworld.member.dto.UserRequestDto;
 import com.posco.posworld.member.dto.UserResponseDto;
+import com.posco.posworld.member.entity.Member;
 import com.posco.posworld.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @RestController
@@ -35,5 +39,14 @@ public class MemberController {
         return ResponseEntity.ok(memberService.changeMemberPassword(request.getExPw(), request.getNewPw()));
     }
 
+    @GetMapping("/count")
+    public Long getUserCount() {
+        return memberService.getUserCount();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Member> getUser(@PathVariable String id){
+        return memberService.getUser(Long.parseLong(id));
+    }
 
 }

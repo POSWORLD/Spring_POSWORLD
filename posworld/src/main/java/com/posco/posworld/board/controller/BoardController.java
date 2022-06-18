@@ -3,6 +3,7 @@ package com.posco.posworld.board.controller;
 import com.posco.posworld.board.model.BoardDto;
 import com.posco.posworld.board.service.BoardServiceImpl;
 import com.posco.posworld.config.SecurityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("board")
 public class BoardController {
     @Autowired
@@ -25,9 +27,9 @@ public class BoardController {
         return boardService.getBoards(boardDto);
     }
 
-    @PostMapping("/")
-    public Integer insertBoard(@RequestBody BoardDto boardDto){
-       boardDto.setFriendId(securityService.getIdAtToken());
+    @PostMapping("/{id}")
+    public Integer insertBoard(@RequestBody BoardDto boardDto, @PathVariable String id){
+       boardDto.setFriendId(Integer.valueOf(id));
        return boardService.insertBoard(boardDto);
 
     }
