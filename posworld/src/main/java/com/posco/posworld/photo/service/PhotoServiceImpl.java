@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -18,6 +19,11 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public PhotoDto getPhotoOne(int id) {
         return photoRepository.findById(id);
+    }
+
+    @Override
+    public List<PhotoDto> getPhotoByUserId(int userid) {
+        return photoRepository.findPhotoDtoByUserid(userid);
     }
 
     @Override

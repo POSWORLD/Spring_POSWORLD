@@ -2,6 +2,7 @@ package com.posco.posworld.photo.controller;
 
 import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.service.PhotoServiceImpl;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,19 +19,17 @@ public class PhotoController {
     @Autowired
     PhotoServiceImpl photoService;
 
-    @Autowired
-    SecurityService securityService;
-
-    @PostMapping("/")
-    public Integer postPhoto(@RequestBody PhotoDto photoDto) {
+    @PostMapping("/{userid}")
+    public Integer postPhoto(@RequestBody PhotoDto photoDto, @PathVariable String userid) {
         PhotoDto result = null;
         try {
+            photoDto.setUserid(Integer.valueOf(userid));
             photoDto.setTitle(photoDto.getTitle());
             photoDto.setImg(photoDto.getImg());
             photoDto.setContent(photoDto.getContent());
 
-            //result = photoService.postPhoto(photoDto);
-            return 1;
+            result = photoService.postPhoto(photoDto);
+            return (result != null)? 1: 0;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e.getMessage());
             return 0;
@@ -41,10 +40,10 @@ public class PhotoController {
     public Integer updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id) {
         PhotoDto result = null;
         try{
-            photoDto.setUserid(securityService.getIdAtToken());
+            // photoDto.setUserid(Integer.valueOf(id));
             photoDto.setId(Integer.valueOf(id));
             result = photoService.updatePhoto(photoDto);
-            return 1;
+            return (result != null)? 1 : 0;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e.getMessage());
             return 0;
@@ -55,7 +54,7 @@ public class PhotoController {
     public Integer deletePhoto(@PathVariable String id) {
         PhotoDto result = null;
         try {
-            photoDto.setUserid(securityService.getIdAtToken());
+            //photoDto.setUserid(Integer.valueOf(id));
             photoDto.setId(Integer.valueOf(id));
             photoService.deletePhoto(photoDto.getId());
             return 1;

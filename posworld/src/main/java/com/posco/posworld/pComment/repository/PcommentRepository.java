@@ -18,7 +18,9 @@ public interface PcommentRepository extends JpaRepository<PcommentDto, Integer> 
     @Query("Delete from PcommentDto p where p.id = ?1 and p.userid = ?2")
     Integer deleteByIds(@Param("id") Integer id, @Param("userid") Integer userid);
 
-
+    @Query(" SELECT p.id,p.pid, u.name, p.content, p.wdate\n" +
+            "        FROM PcommentDto as p\n" +
+            "        INNER JOIN UserDto as u on p.userid = u.id where p.pid = :pid")
     List<PcommentDto> findByPid(@Param("pid") Integer pid);
 
 }

@@ -3,6 +3,7 @@ package com.posco.posworld.photo.service;
 import com.posco.posworld.photo.model.PhotoDto;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Map;
 
 public interface PhotoService {
@@ -11,5 +12,7 @@ public interface PhotoService {
     void deletePhoto(int id);
 //    ResponseEntity<Map<String, Boolean>> deleteBoard(Integer id);
     PhotoDto getPhotoOne(int id);
+
+    List<PhotoDto> getPhotoByUserId(int userid);
 
 }
