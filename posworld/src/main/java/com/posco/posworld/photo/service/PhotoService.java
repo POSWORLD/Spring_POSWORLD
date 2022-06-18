@@ -8,8 +8,8 @@ import java.util.Map;
 public interface PhotoService {
     PhotoDto postPhoto(PhotoDto photoDto);
     PhotoDto updatePhoto(PhotoDto photoDto);
-//    void deletePhoto(int id);
-    ResponseEntity<Map<String, Boolean>> deleteBoard(Integer id);
+    void deletePhoto(int id);
+//    ResponseEntity<Map<String, Boolean>> deleteBoard(Integer id);
     PhotoDto getPhotoOne(int id);
 
 }
