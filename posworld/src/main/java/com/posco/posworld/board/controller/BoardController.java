@@ -1,47 +1,51 @@
 package com.posco.posworld.board.controller;
 
 import com.posco.posworld.board.model.BoardDto;
-import com.posco.posworld.board.service.BoardServiceImpl;
+import com.posco.posworld.board.service.BoardService;
 import com.posco.posworld.config.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController
+@CrossOrigin(origins="http://localhost:3001")
 @RequestMapping("board")
+@RestController
 public class BoardController {
     @Autowired
-    BoardDto boardDto;
+    private BoardService boardService;
     @Autowired
     SecurityService securityService;
     @Autowired
-    BoardServiceImpl boardService;
-    @GetMapping("/{homeId}")
-    public List<BoardDto> getBoards(@PathVariable String homeId){
-        boardDto.setHomeId(Integer.valueOf(homeId));
-        return boardService.getBoards(boardDto);
+    BoardDto boardDto;
+
+    @GetMapping("/{homeid}")
+    public List<BoardDto> getBoards(@PathVariable Integer homeid){
+        boardDto.setHomeid(Integer.valueOf(homeid))  ;
+        return boardService.getBoards(homeid);
     }
 
     @PostMapping("/")
-    public Integer insertBoard(@RequestBody BoardDto boardDto){
-       boardDto.setFriendId(securityService.getIdAtToken());
-       return boardService.insertBoard(boardDto);
-
-    }
-    @DeleteMapping("/{num}")
-    public Integer deletePost(@PathVariable String num){
-        boardDto.setNum(Integer.valueOf(num));
-        boardDto.setFriendId(securityService.getIdAtToken());
-        return boardService.deleteBoard(boardDto);
+    public BoardDto insertBoard(@RequestBody BoardDto boardDto){
+        try{
+            boardDto.setContent(boardDto.getContent());
+            boardDto.setFriendid(boardDto.getFriendid());
+            boardDto.setHomeid(boardDto.getHomeid());
+        }
+        catch (Exception e){
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+        return boardService.insertBoard(boardDto);
     }
     @PutMapping("/{num}")
-    public Integer updateBoard(@RequestBody BoardDto boardDto, @PathVariable String num){
-        boardDto.setFriendId(securityService.getIdAtToken());
-        boardDto.setNum(Integer.valueOf(num));
-        return boardService.updateBoard(boardDto);
+    public BoardDto updateBoard(@PathVariable Integer num, @RequestBody BoardDto boardDto){
+        return boardService.updateBoard(num, boardDto);
+    }
+    @DeleteMapping("/{num}")
+    public ResponseEntity<Map<String,Boolean>> deleteBoard(@PathVariable Integer num) {
+        return boardService.deleteBoard(num);
     }
 
 

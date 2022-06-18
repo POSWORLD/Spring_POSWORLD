@@ -1,7 +1,5 @@
 package com.posco.posworld.photo.controller;
 
-import com.posco.posworld.aspect.TokenRequired;
-import com.posco.posworld.config.SecurityService;
 import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.service.PhotoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
