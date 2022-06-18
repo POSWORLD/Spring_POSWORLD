@@ -1,4 +1,4 @@
-package com.posco.posworld.aspect;
+package com.posco.posworld.user.aspect;
 
 import org.springframework.stereotype.Component;
 

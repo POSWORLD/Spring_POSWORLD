@@ -1,7 +1,5 @@
 package com.posco.posworld.photo.controller;
 
-import com.posco.posworld.aspect.TokenRequired;
-import com.posco.posworld.config.SecurityService;
 import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.service.PhotoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,42 +17,55 @@ public class PhotoController {
     @Autowired
     PhotoServiceImpl photoService;
 
-    //user 확인 코드는 이후 작성
-//    @Autowired
-//    SecurityService securityService;
+    @Autowired
+    SecurityService securityService;
 
     @PostMapping("/")
-    public PhotoDto postPhoto(@RequestBody PhotoDto photoDto) {
+    public Integer postPhoto(@RequestBody PhotoDto photoDto) {
         PhotoDto result = null;
         try {
             photoDto.setTitle(photoDto.getTitle());
             photoDto.setImg(photoDto.getImg());
             photoDto.setContent(photoDto.getContent());
 
-            result = photoService.postPhoto(photoDto);
+            //result = photoService.postPhoto(photoDto);
+            return 1;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e.getMessage());
+            return 0;
         }
-
-        return result;
     }
 
     @PutMapping("/{id}")
-    public PhotoDto updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id) {
-//        photoDto.setUserId(securityService.getIdAtToken());
-        photoDto.setId(Integer.valueOf(id));
-        return photoService.updatePhoto(photoDto);
+    public Integer updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id) {
+        PhotoDto result = null;
+        try{
+            photoDto.setUserid(securityService.getIdAtToken());
+            photoDto.setId(Integer.valueOf(id));
+            result = photoService.updatePhoto(photoDto);
+            return 1;
+        } catch (Exception e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return 0;
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public Integer deletePhoto(@PathVariable String id) {
+        PhotoDto result = null;
+        try {
+            photoDto.setUserid(securityService.getIdAtToken());
+            photoDto.setId(Integer.valueOf(id));
+            photoService.deletePhoto(photoDto.getId());
+            return 1;
+        } catch (Exception e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return 0;
+        }
     }
 
 //    @DeleteMapping("/{id}")
-//    public void deletePhoto(@PathVariable String id) {
-////        photoDto.setUserId(securityService.getIdAtToken());
-//        photoDto.setId(Integer.valueOf(id));
-//        photoService.deletePhoto(photoDto.getId());
+//    public ResponseEntity<Map<String,Boolean>> deleteBoard(@PathVariable String id) {
+//        return photoService.deleteBoard(Integer.valueOf(id));
 //    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String,Boolean>> deleteBoard(@PathVariable String id) {
-        return photoService.deleteBoard(Integer.valueOf(id));
-    }
 }
