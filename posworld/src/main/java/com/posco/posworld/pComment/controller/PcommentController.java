@@ -2,6 +2,7 @@ package com.posco.posworld.pComment.controller;
 
 import com.posco.posworld.config.SecurityService;
 import com.posco.posworld.pComment.model.PcommentDto;
+import com.posco.posworld.pComment.model.PcommentUserDto;
 import com.posco.posworld.pComment.repository.PcommentRepository;
 import com.posco.posworld.pComment.service.PcommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class PcommentController {
         return true;
     }
     @GetMapping("/{pid}")
-    public List<PcommentDto> getPcomment(PcommentDto pcommentDto){
+    public List<PcommentUserDto> getPcomment(PcommentDto pcommentDto){
         pcommentDto.setPid(pcommentDto.getPid());
         pcommentDto.setUserid(pcommentDto.getUserid());
         return pcommentService.getCommentbyPhoto(pcommentDto);
@@ -60,10 +61,9 @@ public class PcommentController {
 
 
         return result;
-
-
-
     }
+
+
 
 
 
