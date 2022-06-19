@@ -37,7 +37,7 @@ public class PhotoController {
         return new ResponseEntity<>(httpStatus);
     }
 
-    @PutMapping("/{userid}/{id}")
+    @PutMapping("/{id}/{userid}")
     public ResponseEntity<?> updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id, @PathVariable String userid) {
         PhotoDto result = null;
         try{
