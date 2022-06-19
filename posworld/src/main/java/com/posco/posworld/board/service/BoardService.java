@@ -2,6 +2,8 @@ package com.posco.posworld.board.service;
 
 import com.posco.posworld.board.exception.ResourceNotFoundException;
 import com.posco.posworld.board.model.BoardDto;
+import com.posco.posworld.board.model.SelectJoinDto;
+import com.posco.posworld.board.repository.BoardJoinRepository;
 import com.posco.posworld.board.repository.BoardRepository;
 import com.posco.posworld.config.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import java.util.Map;
 public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BoardJoinRepository boardJoinRepository;
 
 
     //방명록 리스트 처리
@@ -44,8 +49,8 @@ public class BoardService {
 //   }
 
     //getboards
-    public List<BoardDto> getBoards(@PathVariable Integer homeid){
-        return boardRepository.getBoards(homeid);
+    public List<SelectJoinDto> getBoards(@PathVariable Integer homeid){
+        return boardJoinRepository.getBoards(homeid);
     }
 
     //특정 방명록 수정
