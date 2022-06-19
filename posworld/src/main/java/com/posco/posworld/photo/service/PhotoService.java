@@ -9,10 +9,8 @@ import java.util.Map;
 public interface PhotoService {
     PhotoDto postPhoto(PhotoDto photoDto);
     PhotoDto updatePhoto(PhotoDto photoDto);
-    void deletePhoto(int id);
-//    ResponseEntity<Map<String, Boolean>> deleteBoard(Integer id);
+    Integer deletePhoto(PhotoDto photoDto);
     PhotoDto getPhotoOne(int id);
 
     List<PhotoDto> getPhotoByUserId(int userid);
-
 }

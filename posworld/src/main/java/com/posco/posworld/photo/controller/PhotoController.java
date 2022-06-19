@@ -4,6 +4,7 @@ import com.posco.posworld.photo.model.PhotoDto;
 import com.posco.posworld.photo.service.PhotoServiceImpl;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class PhotoController {
     PhotoServiceImpl photoService;
 
     @PostMapping("/{userid}")
-    public Integer postPhoto(@RequestBody PhotoDto photoDto, @PathVariable String userid) {
+    public ResponseEntity<?> postPhoto(@RequestBody PhotoDto photoDto, @PathVariable String userid) {
         PhotoDto result = null;
         try {
             photoDto.setUserid(Integer.valueOf(userid));
@@ -29,39 +30,39 @@ public class PhotoController {
             photoDto.setContent(photoDto.getContent());
 
             result = photoService.postPhoto(photoDto);
-            return (result != null)? 1: 0;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e.getMessage());
-            return 0;
         }
+        HttpStatus httpStatus = (result != null )? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(httpStatus);
     }
 
-    @PutMapping("/{id}")
-    public Integer updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id) {
+    @PutMapping("/{userid}/{id}")
+    public ResponseEntity<?> updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id, @PathVariable String userid) {
         PhotoDto result = null;
         try{
-            // photoDto.setUserid(Integer.valueOf(id));
+            photoDto.setUserid(Integer.valueOf(userid));
             photoDto.setId(Integer.valueOf(id));
+            photoDto.setTitle(photoDto.getTitle());
+            photoDto.setImg(photoDto.getImg());
+            photoDto.setContent(photoDto.getContent());
             result = photoService.updatePhoto(photoDto);
-            return (result != null)? 1 : 0;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e.getMessage());
-            return 0;
         }
+        HttpStatus httpStatus = (result != null )? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(httpStatus);
     }
 
-    @DeleteMapping("/{id}")
-    public Integer deletePhoto(@PathVariable String id) {
-        PhotoDto result = null;
-        try {
-            //photoDto.setUserid(Integer.valueOf(id));
-            photoDto.setId(Integer.valueOf(id));
-            photoService.deletePhoto(photoDto.getId());
-            return 1;
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return 0;
-        }
+    @DeleteMapping("/{id}/{userid}")
+    public Integer deletePhoto(@PathVariable String id, @PathVariable String userid) {
+        Integer result = null;
+
+        photoDto.setUserid(Integer.valueOf(userid));
+        photoDto.setId(Integer.valueOf(id));
+        result = photoService.deletePhoto(photoDto);
+
+        return result;
     }
 
     @GetMapping("/{userid}")
@@ -69,9 +70,4 @@ public class PhotoController {
         photoDto.setUserid(Integer.valueOf(userid));
         return photoService.getPhotoByUserId(photoDto.getUserid());
     }
-
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Map<String,Boolean>> deleteBoard(@PathVariable String id) {
-//        return photoService.deleteBoard(Integer.valueOf(id));
-//    }
 }
