@@ -63,38 +63,6 @@ public class AuthService {
         return newUser;
     }
 
-//    public UserResponseDto signup(UserRequestDto requestDto) {
-//        if (memberRepository.existsByUserid(requestDto.getUserid())) {
-//            throw new RuntimeException("이미 가입되어 있는 유저입니다");
-//        }
-//
-//        if (requestDto.getPw()==""){
-//            throw new RuntimeException("비밀번호를 입력해주세요.");
-//        }
-//
-//        if (requestDto.getName()==""){
-//            throw new RuntimeException("이름을 입력해주세요.");
-//        }
-//
-//        Member member = requestDto.toUser(passwordEncoder);
-//        member.setProphoto("/img/minimi.png");
-//        UserResponseDto newUser = UserResponseDto.of(memberRepository.save(member));
-//
-//        HomeDto result = null;
-//        homeDto.setUserid(newUser.getId());
-//        homeDto.setTitle("미니룸");
-//        homeDto.setPhoto("좋은사진");
-//        homeDto.setContent("좋은주말");
-//        homeDto.setBgm("좋은음악");
-//        result = homeService.insertHome(homeDto);
-//        if(result != null){
-//            return 1;
-//        }
-//        return 0;
-//
-//        return UserResponseDto.of(memberRepository.save(member));
-//    }
-
     public TokenDto login(UserRequestDto requestDto) {
         UsernamePasswordAuthenticationToken authenticationToken = requestDto.toAuthentication();
 
