@@ -65,9 +65,9 @@ public class PhotoController {
         return result;
     }
 
-    @GetMapping("/{userid}")
-    public List<PhotoDto> getPhoto(@PathVariable String userid ){
-        photoDto.setUserid(Integer.valueOf(userid));
+    @GetMapping("/{homeid}")
+    public List<PhotoDto> getPhoto(@PathVariable String homeid ){
+        photoDto.setUserid(Integer.valueOf(homeid));
         return photoService.getPhotoByUserId(photoDto.getUserid());
     }
 
