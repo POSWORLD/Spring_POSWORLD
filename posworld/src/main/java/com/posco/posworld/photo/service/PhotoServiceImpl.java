@@ -28,7 +28,6 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public PhotoDto postPhoto(PhotoDto photoDto) {
-        System.out.println(photoRepository.save(photoDto));
         return photoRepository.save(photoDto);
     }
 

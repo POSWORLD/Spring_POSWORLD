@@ -29,6 +29,7 @@ public class PhotoController {
             photoDto.setContent(photoDto.getContent());
 
             result = photoService.postPhoto(photoDto);
+            System.out.println(result);
             return (result != null)? 1: 0;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e.getMessage());
@@ -68,6 +69,12 @@ public class PhotoController {
     public List<PhotoDto> getPhoto(@PathVariable String userid ){
         photoDto.setUserid(Integer.valueOf(userid));
         return photoService.getPhotoByUserId(photoDto.getUserid());
+    }
+
+    @GetMapping("/detail/{id}")
+    public PhotoDto getPhotoById(@PathVariable String id){
+        photoDto.setId(Integer.valueOf(id));
+        return photoService.getPhotoOne(photoDto.getId());
     }
 
 //    @DeleteMapping("/{id}")
