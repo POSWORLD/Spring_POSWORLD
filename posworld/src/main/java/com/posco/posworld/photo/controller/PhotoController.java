@@ -70,4 +70,10 @@ public class PhotoController {
         photoDto.setUserid(Integer.valueOf(userid));
         return photoService.getPhotoByUserId(photoDto.getUserid());
     }
+
+    @GetMapping("/detail/{id}")
+    public PhotoDto getPhotoById(@PathVariable String id){
+        photoDto.setId(Integer.valueOf(id));
+        return photoService.getPhotoOne(photoDto.getId());
+    }
 }

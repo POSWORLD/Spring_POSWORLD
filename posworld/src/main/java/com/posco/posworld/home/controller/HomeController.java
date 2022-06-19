@@ -46,9 +46,8 @@ public class HomeController {
     }
 
     @PutMapping("/{id}")
-    @TokenRequired
-    public Integer updateUserById(@RequestBody HomeDto homeDto) {
-        homeDto.setId(Integer.valueOf(securityService.getIdAtToken()));
+    public Integer updateUserById(@RequestBody HomeDto homeDto, @PathVariable String id) {
+        homeDto.setId(Integer.valueOf(id));
         if( homeService.updateHome(homeDto)!=null){
             return 1;
         }else{
