@@ -10,18 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("pComment")
-public class PcommenController {
+public class PcommentController {
     @Autowired
     PcommentDto pcommentDto;
 
     @Autowired
     PcommentRepository pcommentRepository;
-    @Autowired
-    SecurityService securityService;
 
     @Autowired
     PcommentServiceImpl pcommentService;
@@ -33,7 +30,7 @@ public class PcommenController {
     @GetMapping("/{pid}")
     public List<PcommentDto> getPcomment(PcommentDto pcommentDto){
         pcommentDto.setPid(pcommentDto.getPid());
-        pcommentDto.setUserid(securityService.getIdAtToken());
+        pcommentDto.setUserid(pcommentDto.getUserid());
         return pcommentService.getCommentbyPhoto(pcommentDto);
     }
 
@@ -54,11 +51,11 @@ public class PcommenController {
         return new ResponseEntity<>(httpStatus);
     }
 
-    @DeleteMapping("/{id}")
-    public Integer deletePcomment(@PathVariable String id){
+    @DeleteMapping("/{id}/{userid}")
+    public Integer deletePcomment(@PathVariable String id, @PathVariable String userid){
         Integer result = 0;
         pcommentDto.setId(Integer.valueOf(id));
-        pcommentDto.setUserid(securityService.getIdAtToken());
+        pcommentDto.setUserid(Integer.valueOf(userid));
         result =  pcommentService.deletePComment(pcommentDto);
 
 

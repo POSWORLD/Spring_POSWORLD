@@ -25,7 +25,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 
-file: C:\Users\user\posworld\Spring_POSWORLD\Spring_POSWORLD\posworld\src\main\resources\static
+file:  C:\Users\klove\Documents\Spring_POSWORLD\posworld\src\main\resources\static
 
 mybatis:
   config-location: classpath:config/myBatis.xml
