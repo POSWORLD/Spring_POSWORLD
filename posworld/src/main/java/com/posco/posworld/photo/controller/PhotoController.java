@@ -37,6 +37,7 @@ public class PhotoController {
         return new ResponseEntity<>(httpStatus);
     }
 
+
     @PutMapping("/{id}/{userid}")
     public ResponseEntity<?> updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id, @PathVariable String userid) {
         PhotoDto result = null;
@@ -57,7 +58,6 @@ public class PhotoController {
     @DeleteMapping("/{id}/{userid}")
     public Integer deletePhoto(@PathVariable String id, @PathVariable String userid) {
         Integer result = null;
-
         photoDto.setUserid(Integer.valueOf(userid));
         photoDto.setId(Integer.valueOf(id));
         result = photoService.deletePhoto(photoDto);
@@ -70,10 +70,10 @@ public class PhotoController {
         photoDto.setUserid(Integer.valueOf(homeid));
         return photoService.getPhotoByUserId(photoDto.getUserid());
     }
-
     @GetMapping("/detail/{id}")
     public PhotoDto getPhotoById(@PathVariable String id){
         photoDto.setId(Integer.valueOf(id));
         return photoService.getPhotoOne(photoDto.getId());
     }
+
 }

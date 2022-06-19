@@ -1,9 +1,11 @@
 package com.posco.posworld.board.controller;
 
 import com.posco.posworld.board.model.BoardDto;
+import com.posco.posworld.board.model.SelectJoinDto;
 import com.posco.posworld.board.service.BoardService;
 import com.posco.posworld.config.SecurityService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,17 +26,17 @@ public class BoardController {
     BoardDto boardDto;
 
     @GetMapping("/{homeid}")
-    public List<BoardDto> getBoards(@PathVariable Integer homeid){
+    public List<SelectJoinDto> getBoards(@PathVariable Integer homeid){
         boardDto.setHomeid(Integer.valueOf(homeid))  ;
         return boardService.getBoards(homeid);
     }
 
-    @PostMapping("/")
-    public BoardDto insertBoard(@RequestBody BoardDto boardDto){
+    @PostMapping("/{homeid}/{userid}")
+    public BoardDto insertBoard(@RequestBody BoardDto boardDto,@PathVariable String userid, @PathVariable String homeid){
         try{
             boardDto.setContent(boardDto.getContent());
-            boardDto.setFriendid(securityService.getIdAtToken());
-            boardDto.setHomeid(boardDto.getHomeid());
+            boardDto.setFriendid(Integer.valueOf(userid));
+            boardDto.setHomeid(Integer.valueOf(homeid));
         }
         catch (Exception e){
             System.out.println("[ERROR] " + e.getMessage());
@@ -67,16 +69,10 @@ public class BoardController {
 ////        }
        // return boardService.updateBoard(num, boardDto);
   //  }
-    @PutMapping("/{num}")
-    public Integer updateBoard(@PathVariable Integer num, @RequestBody BoardDto boardDto) {
-    try {
 
-        BoardDto newBoard = null;
-        newBoard = boardService.updateBoard(num, boardDto);
-        return 1;
-    }catch (Exception e) {
-        return 0;
-    }
+ @PutMapping("/{num}")
+    public BoardDto updateBoard(@PathVariable Integer num, @RequestBody BoardDto boardDto) {
+    return boardService.updateBoard(num, boardDto);
     }
     @DeleteMapping("/{num}")
     public ResponseEntity<Map<String,Boolean>> deleteBoard(@PathVariable Integer num) {
