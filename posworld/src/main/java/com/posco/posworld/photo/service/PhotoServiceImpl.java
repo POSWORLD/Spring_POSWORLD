@@ -28,31 +28,16 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public PhotoDto postPhoto(PhotoDto photoDto) {
-        System.out.println(photoRepository.save(photoDto));
         return photoRepository.save(photoDto);
     }
 
     @Override
     public PhotoDto updatePhoto(PhotoDto photoDto) {
-        PhotoDto newPhoto = getPhotoOne(photoDto.getId());
-        newPhoto.setTitle(photoDto.getTitle());
-        newPhoto.setImg(photoDto.getImg());
-        newPhoto.setContent(photoDto.getContent());
-        return photoRepository.save(newPhoto);
+        return photoRepository.save(photoDto);
     }
 
     @Override
-    public void deletePhoto(int id) {
-        photoRepository.deleteById(id);
+    public Integer deletePhoto(PhotoDto photoDto) {
+        return photoRepository.deleteByIds(photoDto.getId(), photoDto.getUserid());
     }
-
-//    @Override
-//    public ResponseEntity<Map<String, Boolean>> deleteBoard(Integer id){
-//        PhotoDto photoDto = photoRepository.findById(id)
-//                .orElseThrow(()-> new ResourceNotFoundException("Board not exist with id : "+ id));
-//        photoRepository.delete(photoDto);
-//        Map<String, Boolean> response = new HashMap<>();
-//        response.put("deleted", Boolean.TRUE);
-//        return ResponseEntity.ok(response);
-//    }
 }
