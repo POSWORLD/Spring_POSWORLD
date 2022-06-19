@@ -42,11 +42,17 @@ public class MemberService {
         return UserResponseDto.of(memberRepository.save(member));
     }
 
+
     public Long getUserCount() {
         return memberRepository.count();
     }
 
     public Optional<Member> getUser(Long id){
         return memberRepository.findById(id);
+    }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        memberRepository.deleteById(id);
     }
 }

@@ -37,7 +37,11 @@ public class PhotoController {
         return new ResponseEntity<>(httpStatus);
     }
 
+<<<<<<< HEAD
     @PutMapping("/{userid}/{id}")
+=======
+    @PutMapping("/{id}/{userid}")
+>>>>>>> ab5b0dc6312c103427f68a65643cd5f05c315115
     public ResponseEntity<?> updatePhoto(@RequestBody PhotoDto photoDto, @PathVariable String id, @PathVariable String userid) {
         PhotoDto result = null;
         try{
@@ -57,6 +61,16 @@ public class PhotoController {
     @DeleteMapping("/{id}/{userid}")
     public Integer deletePhoto(@PathVariable String id, @PathVariable String userid) {
         Integer result = null;
+<<<<<<< HEAD
+
+        photoDto.setUserid(Integer.valueOf(userid));
+        photoDto.setId(Integer.valueOf(id));
+        result = photoService.deletePhoto(photoDto);
+
+        return result;
+    }
+=======
+>>>>>>> ab5b0dc6312c103427f68a65643cd5f05c315115
 
         photoDto.setUserid(Integer.valueOf(userid));
         photoDto.setId(Integer.valueOf(id));
@@ -65,9 +79,18 @@ public class PhotoController {
         return result;
     }
 
-    @GetMapping("/{userid}")
-    public List<PhotoDto> getPhoto(@PathVariable String userid ){
-        photoDto.setUserid(Integer.valueOf(userid));
+    @GetMapping("/{homeid}")
+    public List<PhotoDto> getPhoto(@PathVariable String homeid ){
+        photoDto.setUserid(Integer.valueOf(homeid));
         return photoService.getPhotoByUserId(photoDto.getUserid());
     }
+<<<<<<< HEAD
+=======
+
+    @GetMapping("/detail/{id}")
+    public PhotoDto getPhotoById(@PathVariable String id){
+        photoDto.setId(Integer.valueOf(id));
+        return photoService.getPhotoOne(photoDto.getId());
+    }
+>>>>>>> ab5b0dc6312c103427f68a65643cd5f05c315115
 }
