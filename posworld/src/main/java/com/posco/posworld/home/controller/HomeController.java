@@ -47,10 +47,20 @@ public class HomeController {
         return 0;
     }
 
-    @PutMapping("/{id}")
-    public Integer updateUserById(@RequestBody HomeDto homeDto, @PathVariable String id) {
+    @PutMapping("/content/{id}")
+    public Integer updateContent(@RequestBody HomeDto homeDto, @PathVariable String id) {
         homeDto.setId(Integer.valueOf(id));
-        if( homeService.updateHome(homeDto)!=null){
+        if( homeService.updateHomeContent(homeDto)!=null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @PutMapping("/photo/{id}")
+    public Integer updatePhoto(@RequestBody HomeDto homeDto, @PathVariable String id) {
+        homeDto.setId(Integer.valueOf(id));
+        if( homeService.updateHomePhoto(homeDto)!=null){
             return 1;
         }else{
             return 0;

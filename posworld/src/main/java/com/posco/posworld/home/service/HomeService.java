@@ -11,7 +11,8 @@ public interface HomeService {
 
     HomeDto getHome(Integer id);
     HomeDto insertHome(HomeDto homeDto);
-    HomeDto updateHome(HomeDto homeDto);
+    HomeDto updateHomeContent(HomeDto homeDto);
+    HomeDto updateHomePhoto(HomeDto homeDto);
 
 
 
