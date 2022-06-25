@@ -26,11 +26,18 @@ public class HomeServiceImpl implements HomeService{
     }
 
     @Override
-    public HomeDto updateHome(HomeDto homeDto) {
+    public HomeDto updateHomeContent(HomeDto homeDto) {
         HomeDto newHome = getHome(homeDto.getId());
-        newHome.setTitle(homeDto.getTitle());
-        newHome.setPhoto(homeDto.getPhoto());
+
         newHome.setContent(homeDto.getContent());
+        return homeRepository.save(newHome);
+    }
+
+    @Override
+    public HomeDto updateHomePhoto(HomeDto homeDto) {
+        HomeDto newHome = getHome(homeDto.getId());
+
+        newHome.setPhoto(homeDto.getPhoto());
         return homeRepository.save(newHome);
     }
 
