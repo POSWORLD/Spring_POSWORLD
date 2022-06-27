@@ -58,6 +58,7 @@ public class AuthService {
         homeDto.setPhoto("/img/miniroom.png");
         homeDto.setContent("㉠ㅣ억나ㄴ1 그 때 그 시절 ♡");
         homeDto.setBgm("좋은음악");
+        homeDto.setTotal("1");
         homeService.insertHome(homeDto);
 
         return newUser;
